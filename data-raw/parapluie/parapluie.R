@@ -2,7 +2,7 @@
 # Linear regressions
 #
 
-setwd("~/Dropbox/Teaching/Data4courses/parapluie")
+setwd("~/Dropbox/Teaching/MyRpackages/AEC/data-raw/parapluie")
 
 # Load data:
 Google         <- read.csv("google_trend_parapluie.csv")
@@ -55,4 +55,8 @@ for(i in 1:11){
 All.data <- cbind(All.data,monthly.dummy)
 
 write.csv(All.data,file="data4parapluie.csv",row.names=FALSE)
+
+parapluie <- All.data
+save(parapluie,file="../../data/parapluie.rda")
+
 
