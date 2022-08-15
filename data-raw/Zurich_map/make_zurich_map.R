@@ -55,4 +55,3 @@ nb_district <- dim(zurich_districts@data)[1]
 spplot(zurich_districts,
        zcol="name",col.regions=rainbow(nb_district, start=.01,alpha=.4))
 
-
