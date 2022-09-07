@@ -378,5 +378,93 @@ estim.armax <- function(Y,p,q,X=NaN){
 }
 
 
+gg <- function(eps,distri,indic.deriv=0){
+  # Y is of dimension T x n
+  # distri is a list:
+  #       - distri$type contains the types of distributions ("student" or "gaussian")
+  #       - distri$df contains the degrees of freedom for student distri (NaN for non student distri)
+  n <- dim(eps)[2]
+  log.L <- NULL
+  d.log.L <- NULL
+  d2.log.L <- NULL
+  for(ii in 1:n){
+    if(distri$type[ii] == "student"){
+      g.aux <- log.g.student(eps[,ii],nu = distri$df[ii])
+    }else if(distri$type[ii] == "gaussian"){
+      g.aux <- log.g.gaussian(eps[,ii],mu = 0,sigma = 1)
+    }else if(distri$type[ii] == "mixt.gaussian"){
+      p = distri$p[ii]
+      mu.1 <- distri$mu[ii]
+      sigma.1 <- distri$sigma[ii]
+      mu.2 <- - p/(1-p)*mu.1
+      if((1/(1-p) * (1 - p*sigma.1^2 - p/(1-p)*mu.1^2))<0){
+        sigma.2 <- 100000
+      }else{
+        sigma.2 <- sqrt( 1/(1-p) * (1 - p*sigma.1^2 - p/(1-p)*mu.1^2) )
+      }
+      g.aux <- log.g.mixt.gaussian(eps[,ii],mu = c(mu.1,mu.2),sigma = c(sigma.1,sigma.2),
+                                   p)
+    }else if(distri$type[ii] == "laplace"){
+      g.aux <- log.g.laplace(eps[,ii])
+    }else if(distri$type[ii] == "hyper.sec"){
+      g.aux <- log.g.hyper.sec(eps[,ii])
+    }
+    log.L    <- cbind(log.L,g.aux$log.g)
+    d.log.L  <- cbind(d.log.L,g.aux$d.log.g)
+    d2.log.L <- cbind(d2.log.L,g.aux$d2.log.g)
+  }
+  return(list(log.L=log.L,d.log.L=d.log.L,d2.log.L=d2.log.L))
+}
+
+
+simul.VARMA <- function(Model,nb.sim,Y0,eta0,indic.IRF=0){
+  # Model is a list containing:
+  # Mu (vector of constants),
+  # Phi (array of autoregressive matrices),
+  # Theta (array of MA matrices),
+  # C (matrix of dimension n x n, this is the mixing matrix)
+  # distri (chich characterizes the distribution of the shocks)
+  # Y0   contains the initial values of Y,   it has to be of dimension (p x n) * 1 (concatenation of Y_1,...,Y_p)
+  # eta0 contains the initial values of eps, it has to be of dimension (q x n) * 1 (concatenation of eta_1,...,eta_q)
+  # Notations:
+  # n is the dimension of Y, p is the AR order, q is the MA order.
+  n <- dim(Model$Phi)[1]
+  p <- dim(Model$Phi)[3]
+  q <- dim(Model$Theta)[3]
+
+  MU <- c(Model$Mu,rep(0,n*(p-1)))
+  PHI <- make.PHI(Model$Phi)
+  THETA <- cbind(diag(n),-matrix(Model$Theta,nrow=n))
+  THETA <- rbind(THETA,matrix(0,n*(p-1),n*(q+1)))
+  CC <- diag(q+1) %x% Model$C
+
+  y <- Y0
+  eta <- eta0
+
+  eta.simul <- simul.distri(Model$distri,nb.sim)
+  if(indic.IRF==1){
+    eta.simul <- 0*eta.simul
+    eta <- rep(0,n*q)
+    MU <- 0 * MU
+  }
+  eta.simul[1,] <- eta0[1:n]
+
+  Y <- NULL
+  EPS <- NULL
+  V <- NULL
+  ETA <- NULL
+  for(t in 1:nb.sim){
+    eta <- c(eta.simul[t,],eta[1:(n*q)])
+    eps <- CC %*% eta
+    v <- THETA %*% eps
+    y <- MU + PHI %*% y + v
+    Y <- cbind(Y,y)
+    ETA <- cbind(ETA,eta)
+    EPS <- cbind(EPS,eps)
+    V <- cbind(V,v)
+  }
+  return(list(Y=Y,EPS=EPS,ETA=ETA,V=V))
+}
+
 
 
