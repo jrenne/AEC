@@ -2011,7 +2011,7 @@ simul.VARMA <- function(Model,nb.sim,Y0,eta0,indic.IRF=0){
   }
 
   MU <- c(Model$Mu,rep(0,n*(p-1)))
-  PHI <- make.PHI(Model$Phi)
+  PHI <- make.PHI2(Model$Phi)
   THETA <- cbind(diag(n),-matrix(Model$Theta,nrow=n))
   THETA <- rbind(THETA,matrix(0,n*(p-1),n*(q+1)))
   CC <- diag(q+1) %x% Model$C
@@ -2053,7 +2053,7 @@ compute.V <- function(Model,Y){
   T <- dim(Y)[2]
 
   MU <- c(Model$Mu,rep(0,n*(p-1)))
-  PHI <- make.PHI(Model$Phi)
+  PHI <- make.PHI2(Model$Phi)
 
   Y.augm <- NULL
   for(k in 1:p){
@@ -2138,7 +2138,7 @@ estim.struct.shocks <- function(Y,Model){
   vec.1 <- matrix(1,T,1)
 
   # First step: compute residuals:
-  PHI <- make.PHI(Model$Phi)
+  PHI <- make.PHI2(Model$Phi)
   V <- Y.aug - vec.1 %*% matrix(c(Model$Mu,rep(0,(p-1)*n)),nrow=1) - Y.aug_1 %*% t(PHI)
 
   # Second step: Schur decomposition:
@@ -2335,7 +2335,7 @@ compute.all.forms <- function(Theta,C){
 # ===============================================
 
 
-make.PHI <- function(Phi){
+make.PHI2 <- function(Phi){
   p <- dim(Phi)[3]
   n <- dim(Phi)[1]
   PHI <- matrix(0,n*p,n*p)
