@@ -1,8 +1,15 @@
 autocov <- function(X,n){
-  T <- length(X)
-  X.1 <- X[1:(T-n)] - mean(X)
-  X.2 <- X[(n+1):T] - mean(X)
-  return(1/T * sum(X.1 * X.2))
+  # X is a Txk matrix
+  # returns an estimator of E(X_{t-n}X_t)
+  T <- dim(X)[1]
+  k <- dim(X)[2]
+  vec.1 <- matrix(1,1,k)
+  mean.X <- apply(X,2,mean)
+  X.1 <- X[1:(T-n),] - t(matrix(mean.X,k,T-n))
+  X.2 <- X[(n+1):T,] - t(matrix(mean.X,k,T-n))
+  return(
+    matrix(1/T * apply((X.1 %x% vec.1) * (vec.1 %x% X.2),2,sum),k,k)
+  )
 }
 
 make.F <- function(phi){
