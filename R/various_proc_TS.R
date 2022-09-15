@@ -106,9 +106,12 @@ make.PHI <- function(Phi){
   return(PHI)
 }
 
-simul.VAR <- function(c,Phi,B,nb.sim,y0.star,indic.IRF=0,u.shock=0){
+
+simul.VAR <- function(c,Phi,B,nb.sim,y0.star,indic.IRF=0,u.shock=0,eta=NaN){
   # This function simulates a VAR model, initial condition = y0.star
   # Phi is a list, each element of which is a Phi_i matrix. Hence it has p elements if we consider a VAR(p)
+  # If eta is different from NaN then the structural shocks are those defined in this
+  #      matrix of dimension (nb.sim x n)
   p <- length(Phi)
   n <- dim(Phi[[1]])[1]
   # Check that right dimension for y0.star:
@@ -121,16 +124,22 @@ simul.VAR <- function(c,Phi,B,nb.sim,y0.star,indic.IRF=0,u.shock=0){
   }
   PHI <- make.PHI(Phi)
   c.star <- c(c,rep(0*c,p-1))
-  B.star <- matrix(0,n*p,n*p)
+  B.star <- matrix(0,n*p,n)
   B.star[1:n,1:n] <- B
   y <- y0.star
   Y <- NULL
+  if(class(eta)[1]=="matrix"){
+    eps <- eta %*% t(B.star)
+    nb.sim <- dim(eta)[1]
+  }else{
+    eps <- matrix(rnorm(nb.sim*n),nb.sim,n) %*% t(B.star)
+  }
   for(t in 1:nb.sim){
     if(indic.IRF==0){
-      y <- c.star + PHI %*% y + B.star %*% rnorm(n*p)
+      y <- c.star + PHI %*% y + c(eps[t,])
     }else{
       if(t==1){
-        y <- B.star %*% c(u.shock,rep(0*u.shock,p-1))
+        y <- B.star %*% c(u.shock)
       }else{
         y <- PHI %*% y
       }
@@ -139,6 +148,40 @@ simul.VAR <- function(c,Phi,B,nb.sim,y0.star,indic.IRF=0,u.shock=0){
   }
   return(Y[,1:n])
 }
+
+# simul.VAR <- function(c,Phi,B,nb.sim,y0.star,indic.IRF=0,u.shock=0){
+#   # This function simulates a VAR model, initial condition = y0.star
+#   # Phi is a list, each element of which is a Phi_i matrix. Hence it has p elements if we consider a VAR(p)
+#   p <- length(Phi)
+#   n <- dim(Phi[[1]])[1]
+#   # Check that right dimension for y0.star:
+#   if((indic.IRF==0)&(length(y0.star)!=(n*p))){
+#     print("The dimension of y0.star should be (np x 1) where p is the number of lags in the VAR and n is the dimension of y")
+#     return(0)
+#   }
+#   if((indic.IRF!=0)&(length(u.shock)!=n)){
+#     print("If you want to compute IRFs, u.shock has to be of length n, where n is the number of dependent variables")
+#   }
+#   PHI <- make.PHI(Phi)
+#   c.star <- c(c,rep(0*c,p-1))
+#   B.star <- matrix(0,n*p,n*p)
+#   B.star[1:n,1:n] <- B
+#   y <- y0.star
+#   Y <- NULL
+#   for(t in 1:nb.sim){
+#     if(indic.IRF==0){
+#       y <- c.star + PHI %*% y + B.star %*% rnorm(n*p)
+#     }else{
+#       if(t==1){
+#         y <- B.star %*% c(u.shock,rep(0*u.shock,p-1))
+#       }else{
+#         y <- PHI %*% y
+#       }
+#     }
+#     Y <- rbind(Y,c(y))
+#   }
+#   return(Y[,1:n])
+# }
 
 
 # Function that computes the density of vector eps, where the elements
