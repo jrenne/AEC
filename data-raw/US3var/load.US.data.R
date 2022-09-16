@@ -90,7 +90,9 @@ abline(h=0,col="grey")
 
 US3var <- data.frame(Date = vec.dates,
                      y.gdp.gap = y.gdp.gap,
-                     y.u.gap = y.u.gap,r=r,commo=commo)
+                     y.u.gap = y.u.gap,
+                     infl = infl,
+                     r=r,commo=commo)
 
 save(US3var,file="../../data/US3var.rda")
 
