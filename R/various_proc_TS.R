@@ -107,6 +107,29 @@ make.PHI <- function(Phi){
 }
 
 
+compute.fevd <- function(Phi,B,H){
+  # Forecast-error variance decomposition
+  p <- length(Phi)
+  n <- dim(Phi[[1]])[1]
+  y0.star <- rep(0,n*p)
+  c <- rep(0,n)
+  variance.decomp = array(0,c(H,n,n))
+  share.variance.decomp = array(0,c(H,n,n))
+  for(i in 1:n){
+    u.shock <- rep(0,n)
+    u.shock[i] <- 1
+    aux <- simul.VAR(c,Phi,B,nb.sim=H,y0.star,indic.IRF=1,u.shock=u.shock)
+    variance.decomp[,,i] <- apply(aux^2,2,cumsum)
+  }
+  # Compute shares:
+  tot.var <- apply(variance.decomp,c(1,2),sum)
+  for(i in 1:n){
+    share.variance.decomp[,,i] <- variance.decomp[,,i]/tot.var
+  }
+  return(list(variance.decomp=variance.decomp,
+              share.variance.decomp=share.variance.decomp))
+}
+
 simul.VAR <- function(c,Phi,B,nb.sim,y0.star,indic.IRF=0,u.shock=0,eta=NaN){
   # This function simulates a VAR model, initial condition = y0.star
   # Phi is a list, each element of which is a Phi_i matrix. Hence it has p elements if we consider a VAR(p)
