@@ -1,25 +1,25 @@
 
 
 estim.SVAR.ICA <- function(endog.var,distri,p){
-  
+
   n <- dim(endog.var)[2]
   T <- dim(endog.var)[1]
-  
+
   YY <- NULL
   for(i in 1:p){
     YY <- cbind(YY,endog.var[(1+p-i):(T-i),])
   }
-  
+
   eps <- NULL
   for(j in 1:n){
     eq <- lm(endog.var[(1+p):T,j]~YY)
     eps <- cbind(eps,eq$residuals)
   }
-  
+
   # Pre-whiten Y:
   P <- t(chol(var(eps)))
   Y <- eps %*% solve(t(P))
-  
+
   AA.0 <- c(0,0,0)
   res.optim <- optim(AA.0,func.2.minimize,
                      Y = Y,
@@ -49,17 +49,17 @@ estim.SVAR.ICA <- function(endog.var,distri,p){
                      control=list(trace=FALSE,maxit=500))
   AA.0 <- res.optim$par
   #print(res.optim$value)
-  
+
   AA.est <- AA.0
   M <- make.M(n)
   A.est <- matrix(M %*% AA.est,n,n)
   C.PML <- (diag(n) + A.est) %*% solve(diag(n) - A.est)
-  
+
   B.PML <- P %*% C.PML
-  
+
   eta.PML <- Y %*% C.PML
   V <- make.Asympt.Cov.delta(eta.PML,distri,C.PML)
-  
+
   return(list(
     C.PML = C.PML,
     B.PML = B.PML,
@@ -200,7 +200,7 @@ make.M <- function(n){
   aux3[lower.tri(aux3)] <- 1:((n-1)*n/2)
   aux3 <- t(aux3)
   aux3 <- matrix(aux3,ncol=1)
-  
+
   M <- matrix(0,n^2,n*(n-1)/2)
   indic.row <- which(aux2>0)
   M[indic.row,] <- diag(n*(n-1)/2)
@@ -281,8 +281,13 @@ g <- function(eps,distri,indic.deriv=0){
     }else if(distri$type[ii] == "gaussian"){
       g.aux <- log.g.gaussian(eps[,ii],mu = 0,sigma = 1,indic.deriv)
     }else if(distri$type[ii] == "mixt.gaussian"){
-      g.aux <- log.g.mixt.gaussian(eps[,ii],mu = distri$mu[ii],sigma = distri$sigma[ii],
-                                   p = distri$p[ii], indic.deriv)
+      p = distri$p[ii]
+      mu.1 <- distri$mu[ii]
+      sigma.1 <- distri$sigma[ii]
+      mu.2 <- - p/(1-p)*mu.1
+      sigma.2 <- sqrt( 1/(1-p) * (1 - p*sigma.1^2 - p/(1-p)*mu.1^2) )
+      g.aux <- log.g.mixt.gaussian(eps[,ii],mu = c(mu.1,mu.2),sigma = c(sigma.1,sigma.2),
+                                   p, indic.deriv)
     }else if(distri$type[ii] == "laplace"){
       g.aux <- log.g.laplace(eps[,ii], indic.deriv)
     }else if(distri$type[ii] == "hyper.sec"){
@@ -316,62 +321,62 @@ make.g.stars <- function(eps,distri){
 
 make.Omega <- function(eps,distri){
   n <- dim(eps)[2]
-  
+
   all.g.stars <- make.g.stars(eps,distri)
   g.1 <- matrix(all.g.stars$g.1.star,ncol=1)
   g.2 <- matrix(all.g.stars$g.2.star,ncol=1)
   g.3 <- matrix(all.g.stars$g.3.star,ncol=1)
   vec.1 <- matrix(1,n,1)
-  
+
   g.1.g.1 <- g.1 %*% t(g.1)
-  
+
   Omega <- g.1.g.1 %x% diag(n)
-  
+
   for(i in 1:(n-1)){
     aux <- diag(n) %x% g.1.g.1[,i]
-    Omega[(i*n+1):n^2,((i-1)*n+1):(i*n)] <- 
+    Omega[(i*n+1):n^2,((i-1)*n+1):(i*n)] <-
       Omega[(i*n+1):n^2,((i-1)*n+1):(i*n)] - aux[(i*n+1):n^2,]
   }
-  
+
   # Add lower-tri parts of block diagonal:
   Omega <- Omega + diag(n) %x% g.1.g.1
-  
+
   # Remove all entries on and above diag:
   diag(Omega) <- 0
   Omega[upper.tri(Omega)] <- 0
-  
+
   # Make it symmetric:
   Omega <- Omega + t(Omega)
-  
+
   # Fill diagonal:
   aux <- g.2 %*% t(vec.1) + vec.1 %*% t(g.2) - 2 * (g.3 %*% t(vec.1)) * (vec.1 %*% t(g.3))
   diag(Omega) <- c(aux)
-  
+
   # Remove rows and columns to get a [n(n-1)/2] x [n(n-1)/2] matrix:
   aux <- upper.tri(diag(n))
   diag(aux) <- TRUE
   indic.rows.to.keep <- which(!aux)
-  
+
   Omega <- Omega[indic.rows.to.keep,]
-  if(class(Omega)=="matrix"){
-    Omega <- Omega[,indic.rows.to.keep]    
+  if(class(Omega)[1]=="matrix"){
+    Omega <- Omega[,indic.rows.to.keep]
   }else{
     Omega <- Omega[indic.rows.to.keep]
   }
-  
+
   return(Omega)
 }
 
 make.A.matrix <- function(eps,distri,C){
   n <- dim(eps)[2]
-  
+
   all.g.stars <- make.g.stars(eps,distri)
   g.1 <- matrix(all.g.stars$g.1.star,ncol=1)
   g.2 <- matrix(all.g.stars$g.2.star,ncol=1)
   g.3 <- matrix(all.g.stars$g.3.star,ncol=1)
   g.4 <- matrix(all.g.stars$g.4.star,ncol=1)
   vec.1 <- matrix(1,n,1)
-  
+
   A.1 <- matrix(0,n^2,n^2)
   A.2 <- matrix(0,n^2,n^2)
   for(i in 1:n){
@@ -396,14 +401,14 @@ make.A.matrix <- function(eps,distri,C){
   indic.rows.to.keep <- which(!aux)
   A.1 <- A.1[indic.rows.to.keep,]
   A.2 <- A.2[indic.rows.to.keep,]
-  
+
   A.3 <- matrix(0,n,n^2)
   for(i in 1:n){
     A.3[i,((i-1)*n+1):(i*n)] <- c(C[,i])
   }
-  
+
   A <- rbind(A.1,A.2,A.3)
-  
+
   return(A)
 }
 
@@ -560,11 +565,11 @@ round.fixed.length <- function(X,n){
 # g <- function(x,a){
 #   return(x * (exp(2*a*x)-exp(-2*a*x)) - 4*a)
 # }
-# 
+#
 # f <- function(x,a){
 #   return((a/cosh(a*x))^2-a*x*tanh(a*x))
 # }
-# 
+#
 # x <- seq(-2,2,by=.01)
 # a <- pi/2
 # #plot(x,f(x,a),type="l",col="blue")
