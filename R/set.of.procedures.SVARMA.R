@@ -2379,35 +2379,35 @@ simul.distri <- function(distri,nb.sim,basic.drawings=NaN){
 }
 
 
-log.g.gaussian <- function(x,mu,sigma){
-  # Gaussian distribution
-  log.g <- -1/2 * log(2*pi) - log(sigma) -(x - mu)^2/(2*sigma^2)
-  return(list(log.g=log.g))
-}
-
-
-log.g.student <- function(x,nu){
-  # Student distribution
-  log.g <- -(1 + nu)/2 * log(1 + (x * sqrt(nu/(nu-2)))^2/nu) +
-    log(gamma((nu+1)/2)) - .5*log(nu*pi) - log(gamma(nu/2)) + 1/2 * log(nu/(nu-2))
-  return(list(log.g=log.g))
-}
-
-
-log.g.mixt.gaussian <- function(x,mu,sigma,p){
-  # Mixture of Gaussian distributions
-  # mu is 2 x 1 vector; sigma is a 2 x1 vector, p is a scalar
-  mu_1 <- mu[1]
-  mu_2 <- mu[2]
-  sigma_1 <- sigma[1]
-  sigma_2 <- sigma[2]
-  aux <-     p / sqrt(2*pi) / sigma_1 * exp(- (x - mu_1)^2/(2 * sigma_1^2)) +
-    (1-p) / sqrt(2*pi) / sigma_2 * exp(- (x - mu_2)^2/(2 * sigma_2^2))
-  aux[aux==0] <- 10^(-100)
-  log.g <- log(aux)
-
-  return(list(log.g=log.g))
-}
+# log.g.gaussian <- function(x,mu,sigma){
+#   # Gaussian distribution
+#   log.g <- -1/2 * log(2*pi) - log(sigma) -(x - mu)^2/(2*sigma^2)
+#   return(list(log.g=log.g))
+# }
+#
+#
+# log.g.student <- function(x,nu){
+#   # Student distribution
+#   log.g <- -(1 + nu)/2 * log(1 + (x * sqrt(nu/(nu-2)))^2/nu) +
+#     log(gamma((nu+1)/2)) - .5*log(nu*pi) - log(gamma(nu/2)) + 1/2 * log(nu/(nu-2))
+#   return(list(log.g=log.g))
+# }
+#
+#
+# log.g.mixt.gaussian <- function(x,mu,sigma,p){
+#   # Mixture of Gaussian distributions
+#   # mu is 2 x 1 vector; sigma is a 2 x1 vector, p is a scalar
+#   mu_1 <- mu[1]
+#   mu_2 <- mu[2]
+#   sigma_1 <- sigma[1]
+#   sigma_2 <- sigma[2]
+#   aux <-     p / sqrt(2*pi) / sigma_1 * exp(- (x - mu_1)^2/(2 * sigma_1^2)) +
+#     (1-p) / sqrt(2*pi) / sigma_2 * exp(- (x - mu_2)^2/(2 * sigma_2^2))
+#   aux[aux==0] <- 10^(-100)
+#   log.g <- log(aux)
+#
+#   return(list(log.g=log.g))
+# }
 
 
 g <- function(eps,Model){
