@@ -245,7 +245,7 @@ pseudo.log.L <- function(Y,AA,distri,indic.Jacobian=0){
   A <- matrix(M %*% AA,n,n)
   C <- make.C(AA,n)
   eps <- Y %*% C
-  g.eps <- g(eps,distri,indic.deriv = indic.Jacobian)
+  g.eps <- gICA(eps,distri,indic.deriv = indic.Jacobian)
   vector.log.L <- g.eps$log.L
   log.L <- sum(vector.log.L)
   if(indic.Jacobian==0){
@@ -266,7 +266,7 @@ pseudo.log.L.used <- function(AA,Y,distri){
   return(-res$log.L)
 }
 
-g <- function(eps,distri,indic.deriv=0){
+gICA <- function(eps,distri,indic.deriv=0){
   # Y is of dimension T x n
   # distri is a list:
   #       - distri$type contains the types of distributions ("student" or "gaussian")
@@ -311,7 +311,7 @@ d.func.2.minimize <- function(theta,Y,distri){
 }
 
 make.g.stars <- function(eps,distri){
-  res.g <- g(eps,distri,indic.deriv=1)
+  res.g <- gICA(eps,distri,indic.deriv=1)
   g.1.star <- apply(res.g$d.log.L,2,mean)
   g.2.star <- apply(res.g$d.log.L^2,2,mean)
   g.3.star <- apply(eps*res.g$d.log.L,2,mean)
@@ -480,17 +480,17 @@ do.signs <- function(A){
     A.all.sign[,,1:dim(A)[3]] <- A
     A.all.sign[,,(dim(A)[3]+1):(2*dim(A)[3])] <- -A
   }else{
-    A.all.sign <- array(NaN,c(dim(A)[1],dim(A)[2],2^n))
+    A.all.sign <- array(NaN,c(dim(A)[1],dim(A)[2],2^n*dim(A)[3]))
     aux <- array(A[,2:dim(A)[2],],c(dim(A)[1],dim(A)[2]-1,dim(A)[3]))
     A.n_1 <- do.signs(aux)
-    aux <- array(NaN,c(dim(A)[1],dim(A)[2],2^(n-1)))
+    aux <- array(NaN,c(dim(A)[1],dim(A)[2],2^(n-1)*dim(A)[3]))
     aux[,1,] <- A[,1,]
     aux[,2:dim(A)[2],] <- A.n_1
     A.all.sign[,,1:dim(A.n_1)[3]] <- aux
-    aux <- array(NaN,c(dim(A)[1],dim(A)[2],2^(n-1)))
+    aux <- array(NaN,c(dim(A)[1],dim(A)[2],2^(n-1)*dim(A)[3]))
     aux[,1,] <- -A[,1,]
     aux[,2:dim(A)[2],] <- A.n_1
-    A.all.sign[,,(dim(A.n_1)[3]+1):(2^n)] <- aux
+    A.all.sign[,,(dim(A.n_1)[3]+1):(2*dim(A.n_1)[3])] <- aux
   }
   return(A.all.sign)
 }
@@ -640,3 +640,38 @@ log.g.mixt.gaussian <- function(x,mu,sigma,p,indic.deriv=0){
   return(list(log.g=log.g,d.log.g=d.log.g,d2.log.g=d2.log.g))
 }
 
+make.Asympt.Cov.delta_1 <- function(eps,distri,C){
+  n <- dim(eps)[2]
+  T <- dim(eps)[1]
+  A <- make.A.matrix(eps,distri,C)
+  Omega <- make.Omega(eps,distri)
+  Omega.augment <- matrix(0,n^2,n^2)
+  Omega.augment[1:(n*(n-1)/2),1:(n*(n-1)/2)] <- solve(Omega)
+  mat.cov <- T * t(A) %*% Omega.augment %*% A
+  return(mat.cov)
+}
+
+make.Asympt.Cov.deltaAronde <- function(eps,distri,C){
+  A0 <- make.AA(C)
+  n <- dim(eps)[2]
+  T <- dim(eps)[1]
+  Id <- diag(n)
+  M.n <- matrix(0,n*(n-1)/2,n^2)
+  aux <- matrix(1:(n^2),n,n)
+  indic.lower.tri <- aux[lower.tri(aux)]
+  for(i in 1:length(indic.lower.tri)){
+    M.n[i,indic.lower.tri[i]] <- 1
+  }
+  mat.cov.C <- make.Asympt.Cov.delta(eps,distri,C)
+  kron.mat <- t(Id - A0) %x% (Id - A0)
+  mat.cov.Aronde <- 1/4 * M.n %*% kron.mat %*% mat.cov.C %*% t(kron.mat) %*% t(M.n)
+  return(mat.cov.Aronde)
+}
+
+make.AA <- function(C){
+  n <- dim(C)[1]
+  A <- matrix(0,n,n)
+  Id <- diag(n)
+  A <- solve(C + Id) %*% (C - Id)
+  return(A)
+}
