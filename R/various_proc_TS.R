@@ -451,3 +451,80 @@ estim.armax <- function(Y,p,q,X=NaN){
 }
 
 
+simul.garch <- function(zeta,alpha,delta,Nb.simul){
+  # Compute unconditional variance:
+  kappa <- zeta*(1-sum(delta))
+  Eu2 <- kappa/(1 - sum(alpha) - sum(delta))
+  m <- length(alpha)
+  r <- length(delta)
+  sigma2 <- zeta + sum(alpha)*Eu2/(1 - sum(delta))
+  vec.u2 <- rep(Eu2,m)
+  vec.h <- rep(Eu2,r)
+  all.u <- NULL
+  all.h <- NULL
+  for(i in 1:Nb.simul){
+    u <- sqrt(vec.h[1])*rnorm(1)
+    if(m>1){
+      vec.u2 <- c(u^2,vec.u2[1:(m-1)])
+    }else{
+      vec.u2 <- u^2
+    }
+    h <- zeta*(1-sum(delta)) + sum(delta * vec.h) + sum(alpha * vec.u2)
+    if(r>1){
+      vec.h <- c(h,vec.h[1:(r-1)])
+    }else{
+      vec.h <- h
+    }
+    all.u <- c(all.u,u)
+    all.h <- c(all.h,h)
+  }
+  return(list(all.u=all.u,all.h=all.h,Eu2=Eu2,kappa=kappa))
+}
+
+compute.garch <- function(theta,x,m0,r0){
+  zeta <- abs(theta[1])
+  if(m0>0){
+    m <- m0
+    alpha <- abs(theta[2:(m0+1)])
+  }else{
+    m <- 1
+    alpha <- 0
+  }
+  if(r0>0){
+    r <- r0
+    delta <- abs(theta[(m0+2):(1+m0+r0)])
+  }else{
+    r <- 1
+    delta <- 0
+  }
+  p <- max(m,r)
+  T <- length(x)
+  kappa <- zeta*(1-sum(delta))
+  Eu2 <- kappa/(1 - sum(alpha) - sum(delta))
+  vec.u2 <- x[p:(p-m+1)]^2
+  vec.h <- rep(Eu2,r)
+
+  h <- NULL
+  for(i in (p+1):T){
+    last.h <- kappa + sum(alpha * vec.u2) + sum(delta * vec.h)
+    h <- c(h,last.h)
+    if(m>1){
+      vec.u2 <- c(x[i]^2,vec.u2[1:(m-1)])
+    }else{
+      vec.u2 <- x[i]^2
+    }
+    if(r>1){
+      vec.h <- c(last.h,vec.h[1:(r-1)])
+    }else{
+      vec.h <- last.h
+    }
+  }
+  aux <- sum(alpha) + sum(delta)
+  if(aux >= 1){
+    logf <- 10000000000000000000 * (aux - 1)
+  }else{
+    logf <- -sum(-1/2*log(2*pi*h) - x[(p+1):T]^2/(2*h))
+  }
+  return(list(logf=logf,h = h))
+}
+
