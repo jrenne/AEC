@@ -525,6 +525,10 @@ compute.garch <- function(theta,x,m0,r0){
   }else{
     logf <- -sum(-1/2*log(2*pi*h) - x[(p+1):T]^2/(2*h))
   }
-  return(list(logf=logf,h = h))
+
+  names.param <- c("zeta",
+                   paste("alpha",1:m,sep=""),
+                   paste("delta",1:r,sep=""))
+  return(list(logf=logf,h = h,names.param=names.param))
 }
 
