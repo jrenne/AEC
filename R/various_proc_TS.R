@@ -527,11 +527,11 @@ compute.garch <- function(theta,x,m0,r0){
   }
 
   names.param <- "zeta"
-  if(m>0){
-    names.param <- c(names.param,paste("alpha",1:m,sep=""))
+  if(m0>0){
+    names.param <- c(names.param,paste("alpha",1:m0,sep=""))
   }
-  if(r>0){
-    names.param <- c(names.param,paste("delta",1:r,sep=""))
+  if(r0>0){
+    names.param <- c(names.param,paste("delta",1:r0,sep=""))
   }
   return(list(logf=logf,h = h,names.param=names.param))
 }
