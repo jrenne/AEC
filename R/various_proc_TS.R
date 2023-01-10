@@ -533,6 +533,6 @@ compute.garch <- function(theta,x,m0,r0){
   if(r0>0){
     names.param <- c(names.param,paste("delta",1:r0,sep=""))
   }
-  return(list(logf=logf,h = h,names.param=names.param))
+  return(list(logf=logf,h = c(rep(NaN,p),h),names.param=names.param))
 }
 
