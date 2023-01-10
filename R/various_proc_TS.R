@@ -526,7 +526,7 @@ compute.garch <- function(theta,x,m0,r0){
     logf <- -sum(-1/2*log(2*pi*h) - x[(p+1):T]^2/(2*h))
   }
 
-  names.param <- "zetq"
+  names.param <- "zeta"
   if(m>0){
     names.param <- c(names.param,paste("alpha",1:m,sep=""))
   }
