@@ -4,7 +4,7 @@ Title: Various procedures for the Advanced Econometrics course
 Version: 0.1.0
 Author: Jean-Paul Renne
 Maintainer: Jean-Paul Renne <jean-paul.renne@unil.ch>
-Description: This package contains various econometrics-oriented procedures.
+Description: This package contains various econometrics procedures.
 License: What license is it under?
 Encoding: UTF-8
 LazyData: true
