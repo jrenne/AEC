@@ -1,0 +1,11 @@
+Source: National Bureau of Economic Research, Business Cycle Dating Committee
+US Business Cycle Expansions and Contractions
+https://www.nber.org/research/data/us-business-cycle-expansions-and-contractions
+Accessed: 2026-10-20; chronology page last updated 2023-03-14
+
+Dataset-specific notice, verified in the downloaded HTML:
+Permission to copy is granted, provided attribution of source is given.
+
+NBER convention: recessions start in the month after a peak and end in the
+trough month. AEC encodes that convention and adds its own forecast targets.
+The original HTML's SHA-256 is recorded in provenance.json.

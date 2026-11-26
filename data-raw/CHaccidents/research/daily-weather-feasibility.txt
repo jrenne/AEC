@@ -1,0 +1,30 @@
+Zurich daily accidents and weather: feasibility check, 2026-10-22
+
+Outcome: no publicly redistributable Zurich accident source with exact dates was found in the official city, canton and GIS catalogues checked. Do not construct accident dates from weekday/month/year. No course or packaged data changed.
+
+City source (current AEC input):
+https://data.stadt-zuerich.ch/dataset/sid_dav_strassenverkehrsunfallorte
+Creative Commons Attribution, required credit Bundesamt fuer Strassen ASTRA. Year, month, weekday, hour; no exact day/date.
+
+Canton source:
+https://opendata.swiss/de/dataset/polizeilich-registrierte-verkehrsunfalle-im-kanton-zurich-seit-2011
+Metadata API:
+https://ckan.opendata.swiss/api/3/action/package_show?id=polizeilich-registrierte-verkehrsunfalle-im-kanton-zurich-seit-2011
+CSV inspected directly (header and first row, not full download):
+https://daten.statistik.zh.ch/ogd/daten/ressourcen/KTZH_00000718_00001783.csv
+Header has AccidentYear, AccidentMonth, AccidentWeekDay, AccidentHour, but no exact date/day-of-month. Resource-level rights and license are https://opendata.swiss/terms-of-use#terms_by (source attribution). Dataset-level license_id is null: inspect resource-level fields rather than treating that null as a prohibition.
+GIS catalogue https://www.geolion.zh.ch/geodatensatz/5049 describes a five-year extract of the anonymised federal OGD model; not evidence of additional exact dates.
+Official contact for possible daily aggregate release: vpsa@kapo.zh.ch. No message sent. Request city-day injury accident counts including zero days, 2011-2025, plus explicit permission to redistribute in AEC, rather than accident-level exact locations/timestamps.
+
+Weather:
+https://opendatadocs.meteoswiss.ch/a-data-groundbased/a1-automatic-weather-stations
+https://opendatadocs.meteoswiss.ch/general/terms-of-use
+CC BY 4.0, redistribution and modification expressly permitted. Required attribution Source: MeteoSwiss, retain licence and indicate changes.
+Zurich/Fluntern station SMA, identified by City of Zurich meteorology page:
+https://www.stadt-zuerich.ch/de/politik-und-verwaltung/statistik-und-daten/daten/umwelt-und-energie/klima/meteorologie.html
+Daily historical CSV header and first row successfully read:
+https://data.geo.admin.ch/ch.meteoschweiz.ogd-smn/sma/ogd-smn_sma_d_historical.csv
+Columns include reference_timestamp, tre200d0 (mean temperature), rre150d0, rka150d0. First row 1864-01-01. This was not a complete missingness/coverage audit.
+Alignment warning: https://opendatadocs.meteoswiss.ch/general/download documents UTC reference dates and 06-to-06 precipitation days for standard precipitation totals. Inspect parameter metadata or aggregate subdaily observations to Europe/Zurich civil days before any daily accident join. Do not simply equate all reference dates with local calendar days.
+
+Consequence for teaching: daily weather-accident boxes cannot yet be constructed honestly from identified open sources. Monthly weather matching remains possible, or obtain an explicitly redistributable daily accident-count release. No estimates claimed.

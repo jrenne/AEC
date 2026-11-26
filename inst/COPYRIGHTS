@@ -1,0 +1,8 @@
+AEC 0.2.0 copyright and data terms
+
+The MIT licence covers the package software and original construction code.
+It does not relicense third-party observations or third-party code.
+All fourteen shipped data objects retain the terms and credits recorded in
+DATA-SOURCES.md, teaching-data/sources.csv and their individual help pages.
+Preserve the source-specific CC BY, Licence Ouverte and copying permissions.
+Legacy controlled-access and uncleared datasets are not shipped.

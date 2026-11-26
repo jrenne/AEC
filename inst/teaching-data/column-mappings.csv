@@ -1,0 +1,205 @@
+dataset,variable,source_or_transformation
+CHaccidents,accident_id,AccidentUID
+CHaccidents,year,AccidentYear
+CHaccidents,month,AccidentMonth
+CHaccidents,weekday,AccidentWeekDay (aw401=Monday to aw407=Sunday)
+CHaccidents,hour,AccidentHour
+CHaccidents,accident_type_code,AccidentType
+CHaccidents,accident_type,AccidentType_en
+CHaccidents,accident_type_fr,AccidentType_fr
+CHaccidents,severity_code,AccidentSeverityCategory
+CHaccidents,severity,AccidentSeverityCategory_en
+CHaccidents,severity_fr,AccidentSeverityCategory_fr
+CHaccidents,involves_pedestrian,AccidentInvolvingPedestrian
+CHaccidents,involves_bicycle,AccidentInvolvingBicycle
+CHaccidents,involves_motorcycle,AccidentInvolvingMotorcycle
+CHaccidents,road_type_code,RoadType
+CHaccidents,road_type,RoadType_en
+CHaccidents,road_type_fr,RoadType_fr
+CHaccidents,easting_lv95,AccidentLocation_CHLV95_E
+CHaccidents,northing_lv95,AccidentLocation_CHLV95_N
+CHaccidents,canton,CantonCode
+CHaccidents,municipality_code,MunicipalityCode
+CHaccidents,injury,AccidentSeverityCategory in as1/as2/as3
+CHaccidents,severe,AccidentSeverityCategory in as1/as2
+CHaccidents,fatal,AccidentSeverityCategory == as1
+CHvotes,vote_id,anr
+CHvotes,date,datum (dd.mm.yyyy)
+CHvotes,year,year(datum)
+CHvotes,title_fr,titel_kurz_f
+CHvotes,title_en,titel_kurz_e
+CHvotes,source_url,swissvoteslink
+CHvotes,procedure,rechtsform: 1 mandatory_referendum; 2 optional_referendum; 3 popular_initiative; 4 direct_counterproposal; 5 tie_break_question
+CHvotes,objects_on_day,anzahl (initiative/counterproposal/tie-break counted together)
+CHvotes,eligible_voters,berecht
+CHvotes,ballots_cast,stimmen
+CHvotes,turnout_pct,bet
+CHvotes,blank_ballots,leer
+CHvotes,invalid_ballots,ungultig
+CHvotes,valid_ballots,gultig
+CHvotes_cantons,vote_id,anr
+CHvotes_cantons,date,datum
+CHvotes_cantons,canton,"source-column prefix, uppercase"
+CHvotes_cantons,eligible_voters,[canton]-berecht
+CHvotes_cantons,ballots_cast,[canton]-stimmen
+CHvotes_cantons,turnout_pct,[canton]-bet
+CHvotes_cantons,valid_ballots,[canton]-gultig
+CHaccidents_monthly,date,first day of year/month (aggregation label)
+CHaccidents_monthly,year,year
+CHaccidents_monthly,month,month
+CHaccidents_monthly,accidents,count of accident rows
+CHaccidents_monthly,injury_accidents,sum(injury)
+CHaccidents_monthly,severe_accidents,sum(severe)
+CHaccidents_monthly,fatal_accidents,sum(fatal)
+UCIcredit,borrower_id,ID
+UCIcredit,LIMIT_BAL,LIMIT_BAL
+UCIcredit,SEX,SEX
+UCIcredit,EDUCATION,EDUCATION
+UCIcredit,MARRIAGE,MARRIAGE
+UCIcredit,AGE,AGE
+UCIcredit,PAY_0,PAY_0
+UCIcredit,PAY_2,PAY_2
+UCIcredit,PAY_3,PAY_3
+UCIcredit,PAY_4,PAY_4
+UCIcredit,PAY_5,PAY_5
+UCIcredit,PAY_6,PAY_6
+UCIcredit,BILL_AMT1,BILL_AMT1
+UCIcredit,BILL_AMT2,BILL_AMT2
+UCIcredit,BILL_AMT3,BILL_AMT3
+UCIcredit,BILL_AMT4,BILL_AMT4
+UCIcredit,BILL_AMT5,BILL_AMT5
+UCIcredit,BILL_AMT6,BILL_AMT6
+UCIcredit,PAY_AMT1,PAY_AMT1
+UCIcredit,PAY_AMT2,PAY_AMT2
+UCIcredit,PAY_AMT3,PAY_AMT3
+UCIcredit,PAY_AMT4,PAY_AMT4
+UCIcredit,PAY_AMT5,PAY_AMT5
+UCIcredit,PAY_AMT6,PAY_AMT6
+UCIcredit,default_next_month,default payment next month
+CHelectricity_meters,meter_id,0_meter_id
+CHelectricity_meters,installation_type,0_installation_type
+CHelectricity_meters,object_type,0_object_type
+CHelectricity_meters,housing_units,0_num_housing_units
+CHelectricity_meters,source_complete_intervals,0_num_data_points
+CHelectricity_meters,max_net_injection_kw,0_max_net_injection
+CHelectricity_meters,has_electric_water_heater,1_ewh
+CHelectricity_meters,has_heat_pump,1_hp
+CHelectricity_meters,has_heat_pump_backup,1_hp-add
+CHelectricity_meters,has_hotwater_heat_pump,1_hp-wh
+CHelectricity_meters,has_ev_charging,1_ev
+CHelectricity_meters,has_storage_heating,1_storage_heating
+CHelectricity_meters,has_direct_heating,1_direct_heating
+CHelectricity_meters,equipment_changed,1_change
+CHelectricity_meters,energy_tariff,2_energy_tariff
+CHelectricity_meters,grid_tariff,2_grid_tariff
+CHelectricity_meters,tariff_from,2_tariff_from
+CHelectricity_meters,tariff_to,2_tariff_to
+CHelectricity_meters,pilot_waterheater_control,2_wh_control
+CHelectricity_meters,pilot_heatpump_control,2_hp_control
+CHelectricity_meters,pilot_ev_control,2_ev_control
+CHelectricity_meters,selected_daily,ID in deterministic selected-meter-ids.txt
+CHelectricity_meters,daily_selection_weight,source type count / selected type count; NA if not selected
+CHelectricity,meter_id,source filename ID
+CHelectricity,date,UTC timestamp converted to Europe/Zurich date
+CHelectricity,year,local calendar year
+CHelectricity,month,local calendar month
+CHelectricity,weekday,Monday 1 to Sunday 7
+CHelectricity,intervals_expected,92/96/100 quarter-hours per local day
+CHelectricity,valid_import,count nonmissing kWh_to_installation
+CHelectricity,valid_export,count nonmissing kWh_to_grid
+CHelectricity,import_observed_kwh,sum available kWh_to_installation; NA if none
+CHelectricity,export_observed_kwh,sum available kWh_to_grid; NA if none
+CHelectricity,import_kwh,observed sum only if all expected import intervals valid
+CHelectricity,export_kwh,observed sum only if all expected export intervals valid
+CHelectricity,net_kwh,complete import minus complete export
+USrecession,date,H.15 source_period: month-end changed to first-of-month label
+USrecession,yield_3m,H15/RIFLGFCM03_N.M: monthly business-day average; percent per annum
+USrecession,yield_10y,H15/RIFLGFCY10_N.M: monthly business-day average; percent per annum
+USrecession,term_spread,yield_10y minus yield_3m; percentage points
+USrecession,recession,NBER chronology: date greater than peak month and at most trough month
+USrecession,target_date_12m,date plus 12 calendar months
+USrecession,recession_12m,recession at matched target_date_12m; NA if beyond dataset coverage
+CHelectricity_annual,meter_id,source meter ID; all Apartment and Single-family house meters
+CHelectricity_annual,year,local calendar year 2023 or 2024
+CHelectricity_annual,days_in_year,365 or 366 local calendar days
+CHelectricity_annual,import_days,count complete local days for import
+CHelectricity_annual,import_mean_kwh_day,mean complete daily import totals; NA if no complete days
+CHelectricity_annual,import_sum_kwh,sum complete daily import totals; NOT a full annual total if coverage incomplete
+CHelectricity_annual,export_days,count complete local days for export
+CHelectricity_annual,export_mean_kwh_day,mean complete daily export totals; NA if no complete days
+CHelectricity_annual,export_sum_kwh,sum complete daily export totals; NOT a full annual total if coverage incomplete
+CHelectricity_annual,winter_import_days,count complete import days in January February December of the indicated year
+CHelectricity_annual,winter_import_mean_kwh_day,mean complete daily imports in January February December of the indicated year; NA if no complete days
+CHelectricity_annual,summer_import_days,count complete import days in June July August
+CHelectricity_annual,summer_import_mean_kwh_day,mean complete daily imports in June July August; NA if no complete days
+CHelectricity_annual,installation_type,"0_installation_type; static source metadata, not annual treatment status"
+CHelectricity_annual,object_type,"0_object_type; static source metadata, not annual treatment status"
+CHelectricity_annual,has_electric_water_heater,"1_ewh; static source metadata, not annual treatment status"
+CHelectricity_annual,has_heat_pump,"1_hp; static source metadata, not annual treatment status"
+CHelectricity_annual,has_heat_pump_backup,"1_hp-add; static source metadata, not annual treatment status"
+CHelectricity_annual,has_hotwater_heat_pump,"1_hp-wh; static source metadata, not annual treatment status"
+CHelectricity_annual,has_ev_charging,"1_ev; static source metadata, not annual treatment status"
+CHelectricity_annual,has_storage_heating,"1_storage_heating; static source metadata, not annual treatment status"
+CHelectricity_annual,has_direct_heating,"1_direct_heating; static source metadata, not annual treatment status"
+CHelectricity_annual,equipment_changed,"1_change; static source metadata, not annual treatment status"
+CHelectricity_annual,energy_tariff,"2_energy_tariff; static source metadata, not annual treatment status"
+CHelectricity_annual,grid_tariff,"2_grid_tariff; static source metadata, not annual treatment status"
+CHelectricity_annual,tariff_from,"2_tariff_from; static source metadata, not annual treatment status"
+CHelectricity_annual,tariff_to,"2_tariff_to; static source metadata, not annual treatment status"
+CHelectricity_annual,pilot_waterheater_control,"2_wh_control; static source metadata, not annual treatment status"
+CHelectricity_annual,pilot_heatpump_control,"2_hp_control; static source metadata, not annual treatment status"
+CHelectricity_annual,pilot_ev_control,"2_ev_control; static source metadata, not annual treatment status"
+CHapples,date,"Workbook deutsch month rows 47:58 or 73:84, column B; first-day sale-month label"
+CHapples,variety,Workbook headings Gala / Golden Delicious; Swiss-origin conventional/IP apples
+CHapples,quality_class,Workbook headings: class I only
+CHapples,quantity_t,"Workbook C:D, tonnes sold by surveyed warehouses to domestic buyers; no interpolation"
+CHapples,price_chf_kg,"Workbook E:F, nominal loose-goods wholesale CHF/kg; Gala July 2023 remains NA"
+CHapples,harvest_year,year(date) minus 1 for January-August; crop-year proxy
+CHapples,source_season,Workbook column label; July/August 2023 retain 2023/24 despite harvest_year 2022
+CHapples,frost_sio_days,CHapples_frost: SIO frost_days matched by harvest_year
+CHapples,frost_gut_days,CHapples_frost: GUT frost_days matched by harvest_year
+CHapples,frost_mean_days,"Arithmetic mean of SIO and GUT frost_days, not orchard-weighted"
+CHapples_frost,station,MeteoSwiss station_abbr SIO/GUT
+CHapples_frost,station_name,"MeteoSwiss station names, ASCII: Sion / Guettingen"
+CHapples_frost,canton,Station cantons VS / TG
+CHapples_frost,year,Calendar year of source daily reference_timestamp
+CHapples_frost,frost_days,April 1-May 31 count tre200dn < 0C; source date labels unchanged
+CHapples_frost,valid_days,Count nonmissing April-May tre200dn
+CHapples_frost,expected_days,61 daily observations expected each April-May
+CHapples_frost,minimum_tmin_c,"Minimum April-May tre200dn, Celsius"
+CHapples_frost,cold_degree_days,"Sum pmax(0,-tre200dn) over April-May, Celsius-days"
+CHhydro,date,Europe/Zurich civil day after UTC electricity alignment; source reference date for weather
+CHhydro,hours,Number of electricity hours per local day: 23/24/25; all primary source hours complete
+CHhydro,reservoir_mw,CH public_power: Hydro water reservoir; duration-weighted complete-day mean MW
+CHhydro,pumped_generation_mw,"CH public_power: Hydro pumped storage; mean generation MW, not pump consumption"
+CHhydro,river_mw,CH public_power: Hydro Run-of-River; mean MW; NA on any incomplete day
+CHhydro,river_valid_hours,Observed river-generation hours; compare with hours; 10 incomplete days
+CHhydro,nuclear_mw,CH public_power: Nuclear; complete-day mean MW
+CHhydro,load_mw,"CH public_power: Load; system load MW, not household/final consumption"
+CHhydro,price_eur_mwh,CH price: mean of hourly day-ahead EUR/MWh; six negative daily means retained
+CHhydro,wind_onshore_de_mw,DE public_power: Wind onshore; four complete source quarters per hour then local-day mean MW
+CHhydro,wind_offshore_de_mw,DE public_power: Wind offshore; same complete-quarter/hour/day method
+CHhydro,wind_de_mw,Sum wind_onshore_de_mw plus wind_offshore_de_mw
+CHhydro,temperature_sio_c,"MeteoSwiss SIO tre200d0, daily mean 2m air temperature Celsius; reference dates unchanged"
+CHhydro,rain_sio_mm,"MeteoSwiss SIO rre150d0, daily precipitation mm; reference dates unchanged"
+CHhydro,rain_previous7_sio_mm,Sum SIO rain_mm on dates date-7 through date-1; excludes current-day rain
+CHhydro,temperature_gut_c,"MeteoSwiss GUT tre200d0, daily mean 2m air temperature Celsius; reference dates unchanged"
+CHhydro,rain_gut_mm,"MeteoSwiss GUT rre150d0, daily precipitation mm; reference dates unchanged"
+CHhydro,rain_previous7_gut_mm,Sum GUT rain_mm on dates date-7 through date-1; excludes current-day rain
+FRradars,stack_id,Original retained comparison identifier; one treated site per stack
+FRradars,site_id,cle_radar from article replication
+FRradars,treated,Original within-stack treated indicator
+FRradars,anchor_month,Treated site installation year/month; first-day Date label
+FRradars,installation_month,Own reconciled installation year/month; first-day Date label
+FRradars,road_class,route_class of matched road
+FRradars,speed_limit_kmh,vma_kmh; missing limit is its own exact matching stratum
+FRradars,accidents_earlier,Integer 12 * pre_24_13 mean from network 2 km / 100 m corridor
+FRradars,accidents_pre,Integer 6 * (pre_12_7 + pre_6_1) means from same monthly count matrix
+FRradars,accidents_post,"Integer 12 * (reference_mean + change), months +1 to +12"
+FRaccidents_daily,date,start date of matched 06-to-06 UTC observation interval
+FRaccidents_daily,injury_accidents,count BAAC Paris department 75 accidents after Europe/Paris clock conversion to UTC
+FRaccidents_daily,rain_mm,"Meteo-France RR, station 75114001, mm per 06-to-06 UTC day"
+FRaccidents_daily,rain_quality,original Meteo-France QRR code
+FRaccidents_daily,weekday,Monday 1 to Sunday 7 of interval start date
+FRaccidents_daily,month,month of interval start date
+FRaccidents_daily,year,year of interval start date

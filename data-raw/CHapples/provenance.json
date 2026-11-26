@@ -1,0 +1,19 @@
+{
+  "retrieved": "2026-10-20",
+  "workbook_sha256": "24136b6e760f3eb5a43f18926be22b5954aa616d7eb85759ed1b98e4f44d28be",
+  "workbook_url": "https://www.datocms-assets.com/21252/1726748286-begleittabelle_neue-einblicke-schweizer-apfelmarkt.xlsx",
+  "sheet": "deutsch",
+  "market_rows": "Gala 47:58; Golden Delicious 73:84; C:D quantities, E:F prices",
+  "weather": [
+    {
+      "station": "SIO",
+      "url": "https://data.geo.admin.ch/ch.meteoschweiz.ogd-smn/sio/ogd-smn_sio_d_historical.csv",
+      "original_sha256": "f87140bf20683a09024f62fb1c519553f601537fcc720dde82cb6b993a6871c9"
+    },
+    {
+      "station": "GUT",
+      "url": "https://data.geo.admin.ch/ch.meteoschweiz.ogd-smn/gut/ogd-smn_gut_d_historical.csv",
+      "original_sha256": "4708a30fcb938bb77453a7102b596958176a72dbe31432921fcd3e6998aba66f"
+    }
+  ]
+}

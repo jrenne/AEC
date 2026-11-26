@@ -1,0 +1,20 @@
+dataset,variable,source_or_transformation
+CHapples,date,"Workbook deutsch month rows 47:58 or 73:84, column B; first-day sale-month label"
+CHapples,variety,Workbook headings Gala / Golden Delicious; Swiss-origin conventional/IP apples
+CHapples,quality_class,Workbook headings: class I only
+CHapples,quantity_t,"Workbook C:D, tonnes sold by surveyed warehouses to domestic buyers; no interpolation"
+CHapples,price_chf_kg,"Workbook E:F, nominal loose-goods wholesale CHF/kg; Gala July 2023 remains NA"
+CHapples,harvest_year,year(date) minus 1 for January-August; crop-year proxy
+CHapples,source_season,Workbook column label; July/August 2023 retain 2023/24 despite harvest_year 2022
+CHapples,frost_sio_days,CHapples_frost: SIO frost_days matched by harvest_year
+CHapples,frost_gut_days,CHapples_frost: GUT frost_days matched by harvest_year
+CHapples,frost_mean_days,"Arithmetic mean of SIO and GUT frost_days, not orchard-weighted"
+CHapples_frost,station,MeteoSwiss station_abbr SIO/GUT
+CHapples_frost,station_name,"MeteoSwiss station names, ASCII: Sion / Guettingen"
+CHapples_frost,canton,Station cantons VS / TG
+CHapples_frost,year,Calendar year of source daily reference_timestamp
+CHapples_frost,frost_days,April 1-May 31 count tre200dn < 0C; source date labels unchanged
+CHapples_frost,valid_days,Count nonmissing April-May tre200dn
+CHapples_frost,expected_days,61 daily observations expected each April-May
+CHapples_frost,minimum_tmin_c,"Minimum April-May tre200dn, Celsius"
+CHapples_frost,cold_degree_days,"Sum pmax(0,-tre200dn) over April-May, Celsius-days"

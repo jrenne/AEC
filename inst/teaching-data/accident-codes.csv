@@ -1,0 +1,26 @@
+source_variable,code,label_en,label_fr
+AccidentType,at0,Accident with skidding or self-accident,dérapage ou perte de maîtrise
+AccidentType,at00,Other,autres
+AccidentType,at1,Accident when overtaking or changing lanes,accident lors d'un dépassement ou lors d'un changement de voie de circulation
+AccidentType,at2,Accident with rear-end collision,accident par tamponnement
+AccidentType,at3,Accident when turning left or right,accident en quittant une route
+AccidentType,at4,Accident when turning-into main road,accident en s'engageant sur une route
+AccidentType,at5,Accident when crossing the lane(s),accident en traversant une route
+AccidentType,at6,Accident with head-on collision,collision frontale
+AccidentType,at7,Accident when parking,accident en parquant
+AccidentType,at8,Accident involving pedestrian(s),accident impliquant des piétons
+AccidentType,at9,Accident involving animal(s),accident impliquant des animaux
+AccidentSeverityCategory,as1,Accident with fatalities,accident avec tués
+AccidentSeverityCategory,as2,Accident with severe injuries,accident avec blessés graves
+AccidentSeverityCategory,as3,Accident with light injuries,accident avec blessés légers
+AccidentSeverityCategory,as4,Accident with property damage,accident avec dommages matériels
+RoadType,rt432,Principal road,route principale
+RoadType,rt433,Minor road,route secondaire
+RoadType,rt439,Other,autre
+AccidentWeekDay,aw401,Monday,lundi
+AccidentWeekDay,aw402,Tuesday,mardi
+AccidentWeekDay,aw403,Wednesday,mercredi
+AccidentWeekDay,aw404,Thursday,jeudi
+AccidentWeekDay,aw405,Friday,vendredi
+AccidentWeekDay,aw406,Saturday,samedi
+AccidentWeekDay,aw407,Sunday,dimanche

@@ -1,0 +1,107 @@
+{
+  "retrieved": "2026-10-20",
+  "sources": [
+    {
+      "file": "power-ch-2016-20.json",
+      "sha256": "97f13bde7db6ea0903c15baa1ce33b1bf31614458db272d76421c890daf0a7a2",
+      "n_source_timestamps": 43848,
+      "license_info": "CC BY 4.0 default API licence; no source-specific exception in response",
+      "url": "https://api.energy-charts.info/public_power?country=ch&start=2016-01-01&end=2020-12-31"
+    },
+    {
+      "file": "power-ch-2021-22.json",
+      "sha256": "8cef212800a3b2ef460f0e2f2c8e839029a10f1adfe2f2cce81b5aed59fcb704",
+      "n_source_timestamps": 17520,
+      "license_info": "CC BY 4.0 default API licence; no source-specific exception in response",
+      "url": "https://api.energy-charts.info/public_power?country=ch&start=2021-01-01&end=2022-12-31"
+    },
+    {
+      "file": "power-ch-2023.json",
+      "sha256": "816843428672493fb997b380152adbe9562134da20f015c54f1d6bfa96c106c2",
+      "n_source_timestamps": 8760,
+      "license_info": "CC BY 4.0 default API licence; no source-specific exception in response",
+      "url": "https://api.energy-charts.info/public_power?country=ch&start=2023-01-01&end=2023-12-31"
+    },
+    {
+      "file": "power-ch-2024.json",
+      "sha256": "e381a03242fc68390dea75a0ab6a3f4703ac403ba1d8a90e42e89a8e8fbd8d4c",
+      "n_source_timestamps": 8784,
+      "license_info": "CC BY 4.0 default API licence; no source-specific exception in response",
+      "url": "https://api.energy-charts.info/public_power?country=ch&start=2024-01-01&end=2024-12-31"
+    },
+    {
+      "file": "power-de-2016-20.json",
+      "sha256": "3566b4d0a7888f544a01f4c92148638fc5a743784c7d368da35335968309c33e",
+      "n_source_timestamps": 175392,
+      "license_info": "CC BY 4.0 default API licence; no source-specific exception in response",
+      "url": "https://api.energy-charts.info/public_power?country=de&start=2016-01-01&end=2020-12-31"
+    },
+    {
+      "file": "power-de-2021-22.json",
+      "sha256": "95fe11013bb6534a269ed8a9c50457d1b4bcda1f6ee3abde5d7124cdefb2d567",
+      "n_source_timestamps": 70080,
+      "license_info": "CC BY 4.0 default API licence; no source-specific exception in response",
+      "url": "https://api.energy-charts.info/public_power?country=de&start=2021-01-01&end=2022-12-31"
+    },
+    {
+      "file": "power-de-2023.json",
+      "sha256": "d137d55084d079be3a7bf14e29661af0a79e02feb328387b82271ce70ce28cb4",
+      "n_source_timestamps": 35040,
+      "license_info": "CC BY 4.0 default API licence; no source-specific exception in response",
+      "url": "https://api.energy-charts.info/public_power?country=de&start=2023-01-01&end=2023-12-31"
+    },
+    {
+      "file": "power-de-2024.json",
+      "sha256": "54d5e2e74bf980c4b4334aef3aeeb4dd2d39c7747795444b18bdd58c7e2385cd",
+      "n_source_timestamps": 35136,
+      "license_info": "CC BY 4.0 default API licence; no source-specific exception in response",
+      "url": "https://api.energy-charts.info/public_power?country=de&start=2024-01-01&end=2024-12-31"
+    },
+    {
+      "file": "prices-ch-2016-20.json",
+      "sha256": "60c3307fbcc01f1365e26d1dce90222297997285f82962aee710f8ba6e9a800d",
+      "n_source_timestamps": 43848,
+      "license_info": "CC BY 4.0 (creativecommons.org/licenses/by/4.0) from Bundesnetzagentur | SMARD.de",
+      "url": "https://api.energy-charts.info/price?bzn=CH&start=2016-01-01&end=2020-12-31"
+    },
+    {
+      "file": "prices-ch-2021-22.json",
+      "sha256": "f06e40c9c336de0ebcae8cf892961852041acc0796c655ea348319191f236913",
+      "n_source_timestamps": 17520,
+      "license_info": "CC BY 4.0 (creativecommons.org/licenses/by/4.0) from Bundesnetzagentur | SMARD.de",
+      "url": "https://api.energy-charts.info/price?bzn=CH&start=2021-01-01&end=2022-12-31"
+    },
+    {
+      "file": "prices-ch-2023.json",
+      "sha256": "193cf98fae72fd03d72377698993cb93fc0d3affef11de21338218120d9c999d",
+      "n_source_timestamps": 8760,
+      "license_info": "CC BY 4.0 (creativecommons.org/licenses/by/4.0) from Bundesnetzagentur | SMARD.de",
+      "url": "https://api.energy-charts.info/price?bzn=CH&start=2023-01-01&end=2023-12-31"
+    },
+    {
+      "file": "prices-ch-2024.json",
+      "sha256": "c8c9a150d638583864b3130213c9953ba45530e5f4f0d3f15fb861b41a188b4c",
+      "n_source_timestamps": 8784,
+      "license_info": "CC BY 4.0 (creativecommons.org/licenses/by/4.0) from Bundesnetzagentur | SMARD.de",
+      "url": "https://api.energy-charts.info/price?bzn=CH&start=2024-01-01&end=2024-12-31"
+    },
+    {
+      "file": "sio-daily.csv",
+      "sha256": "f87140bf20683a09024f62fb1c519553f601537fcc720dde82cb6b993a6871c9",
+      "source": "https://data.geo.admin.ch/ch.meteoschweiz.ogd-smn/sio/ogd-smn_sio_d_historical.csv",
+      "license": "CC BY 4.0, Source: MeteoSwiss"
+    },
+    {
+      "file": "gut-daily.csv",
+      "sha256": "4708a30fcb938bb77453a7102b596958176a72dbe31432921fcd3e6998aba66f",
+      "source": "https://data.geo.admin.ch/ch.meteoschweiz.ogd-smn/gut/ogd-smn_gut_d_historical.csv",
+      "license": "CC BY 4.0, Source: MeteoSwiss"
+    }
+  ],
+  "terms": {
+    "power": "https://api.energy-charts.info/",
+    "price": "https://www.smard.de/en/datennutzung",
+    "weather": "https://opendatadocs.meteoswiss.ch/general/terms-of-use"
+  },
+  "window_reason": "2016-2024 complete calendar years preceding the January 2025 Swiss production source change documented by Energy-Charts."
+}

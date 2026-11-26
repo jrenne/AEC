@@ -1,0 +1,10 @@
+{
+  "codes/13_doubly_robust_road_corridor_did.R": "ae7e4b3d2d391244b9c8d839d46883fe4ba135b569cea18dc8f6818b713685b4",
+  "data/processed/radars.csv.gz": "dbd2e3d25ea5c8d49d9abd295c4e2d7d742c8a7cc7327d0c6bc4fff6bc425d92",
+  "results/current/road_corridor_monthly_counts_network_100m.csv.gz": "03c18a9aeff185a989a756058ef5bcce934bb5a11dd84463a501eac97f3960e7",
+  "results/current/road_corridor_geometry_diagnostics_network_100m.csv": "d77fc8c62810bcb673d23a69ba781eef454d3d730018dec9be1b7b14b21a0687",
+  "results/current/radar_ign_road_matches.csv": "3dba789b42d6fe9572a9269a54941953989dc24b4c5a635a0eef793acb8fb2ca",
+  "results/current/radar_treatment_date_audit.csv": "a2e563b2538521c649988f0fc558a12e0c6edf7df7616576cd3ae42c2acab920",
+  "data/auxiliary/result.radar.commune.rda": "d9cd009068a5603ecaa6a47be7abf97652914b961fdcd61b2f8ae81eb1496940",
+  "results/cached/estimates_monthly_road_corridor_network_100m_balanced12_reach75.csv": "21829c51282a7876598e3a50592d1b6fe3b249599387ae3f001fd004bd3fca60"
+}

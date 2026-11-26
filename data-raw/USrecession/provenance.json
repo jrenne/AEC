@@ -1,0 +1,25 @@
+{
+  "h15_archive": {
+    "url": "https://www.federalreserve.gov/datadownload/Output.aspx?rel=H15&filetype=zip",
+    "credit": "Board of Governors of the Federal Reserve System; U.S. Treasury",
+    "terms": "Public domain; credit requested",
+    "series": [
+      "RIFLGFCM03_N.M",
+      "RIFLGFCY10_N.M"
+    ],
+    "sha256": "8a0c7ec4c37c6edc828b90e628b4fab7c966629a612f3e3c2d8cacc9fc5a43ce"
+  },
+  "nber_json": {
+    "url": "https://data.nber.org/data/cycles/business_cycle_dates.json",
+    "credit": "National Bureau of Economic Research, Business Cycle Dating Committee",
+    "terms": "Permission to copy is granted, provided attribution of source is given.",
+    "sha256": "675edfab232057b6d05dc460afee504013d40d12dd206ea70bb73a79e6481551"
+  },
+  "access_date": "2026-10-20",
+  "sample_start": "1982-01-01",
+  "sample_end": "2024-12-01",
+  "nber_source_version": "Chronology page last updated 2023-03-14; retrieved 2026-10-20",
+  "h15_source_version": "Release available 2026-10-20; monthly data through 2026-09; extract ends 2024-12",
+  "nber_landing_url": "https://www.nber.org/research/data/us-business-cycle-expansions-and-contractions",
+  "nber_permission_evidence": "Dataset-specific copying permission verified in downloaded chronology HTML; original HTML SHA256 326fcf5fd2fda6c80777d3a74b89bdd65de72d231e05a472f65f5c8fbba416bf"
+}

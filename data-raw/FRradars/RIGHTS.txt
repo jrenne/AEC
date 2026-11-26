@@ -1,0 +1,30 @@
+FRradars: compact teaching extraction of Renne (October 2026),
+The Effects of Speed Cameras on Injury Crashes in France.
+Data release v1.1.0: https://github.com/jrenne/accidents-radars-france
+Replication: https://github.com/jrenne/accidents-radars-replication
+Extraction: 21 October 2026. Script/input SHA-256 values are frozen in
+upstream-sha256.json. Counts/geometry refer to the article's 2 km network
+reach, 100 m lateral tolerance, balanced first-year sample, 75% reach rule.
+
+Redistribution: processed database/exports are under Licence Ouverte 2.0
+(Etalab), including derived information, subject to attribution and the
+retention of underlying source terms. The full text is included in
+LICENSE-DATA.md. Source-repository LICENCE.md and metadata/sources.csv are
+included as SOURCE-LICENCES.md and source-providers.csv. The optional
+preparation code adapts the article's MIT-licensed code; its copyright and
+license notice are preserved in LICENSE-REPLICATION-CODE.txt.
+
+Credit: Jean-Paul Renne, Accidents corporels et radars fixes en France,
+v1.1.0, 11 October 2026; Ministry of the Interior / ONISR (BAAC 2005-2024);
+Ministry of the Interior / Delegation a la securite routiere (fixed-camera
+inventories 2024 and 2025); Antoine Augusti / Ministry of the Interior
+(25 October 2018 inventory); IGN BD TOPO v3 road geometries (consulted
+14 October 2026); OpenDataSoft commune correspondence/centroids/population
+2013 (Licence Ouverte 1.0, consulted 18 October 2026). The latter source's
+terms remain applicable to the city-exclusion inputs; see source-providers.csv.
+
+AEC transformations: preserve the full 406-stack baseline risk set, retain
+639 distinct sites and integer counts in three 12-month windows, and omit
+raw personal records, coordinates, geometry and unused covariates. The rows
+are repeated site comparisons, not independent sites. The sources are not
+represented as endorsing AEC or the course.

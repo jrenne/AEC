@@ -1,0 +1,8 @@
+"dataset","variable","source_or_transformation"
+"USrecession","date","H.15 source_period: month-end changed to first-of-month label"
+"USrecession","yield_3m","H15/RIFLGFCM03_N.M: monthly business-day average; percent per annum"
+"USrecession","yield_10y","H15/RIFLGFCY10_N.M: monthly business-day average; percent per annum"
+"USrecession","term_spread","yield_10y minus yield_3m; percentage points"
+"USrecession","recession","NBER chronology: date greater than peak month and at most trough month"
+"USrecession","target_date_12m","date plus 12 calendar months"
+"USrecession","recession_12m","recession at matched target_date_12m; NA if beyond dataset coverage"

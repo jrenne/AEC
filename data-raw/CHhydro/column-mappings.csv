@@ -1,0 +1,19 @@
+dataset,variable,source_or_transformation
+CHhydro,date,Europe/Zurich civil day after UTC electricity alignment; source reference date for weather
+CHhydro,hours,Number of electricity hours per local day: 23/24/25; all primary source hours complete
+CHhydro,reservoir_mw,CH public_power: Hydro water reservoir; duration-weighted complete-day mean MW
+CHhydro,pumped_generation_mw,"CH public_power: Hydro pumped storage; mean generation MW, not pump consumption"
+CHhydro,river_mw,CH public_power: Hydro Run-of-River; mean MW; NA on any incomplete day
+CHhydro,river_valid_hours,Observed river-generation hours; compare with hours; 10 incomplete days
+CHhydro,nuclear_mw,CH public_power: Nuclear; complete-day mean MW
+CHhydro,load_mw,"CH public_power: Load; system load MW, not household/final consumption"
+CHhydro,price_eur_mwh,CH price: mean of hourly day-ahead EUR/MWh; six negative daily means retained
+CHhydro,wind_onshore_de_mw,DE public_power: Wind onshore; four complete source quarters per hour then local-day mean MW
+CHhydro,wind_offshore_de_mw,DE public_power: Wind offshore; same complete-quarter/hour/day method
+CHhydro,wind_de_mw,Sum wind_onshore_de_mw plus wind_offshore_de_mw
+CHhydro,temperature_sio_c,"MeteoSwiss SIO tre200d0, daily mean 2m air temperature Celsius; reference dates unchanged"
+CHhydro,rain_sio_mm,"MeteoSwiss SIO rre150d0, daily precipitation mm; reference dates unchanged"
+CHhydro,rain_previous7_sio_mm,Sum SIO rain_mm on dates date-7 through date-1; excludes current-day rain
+CHhydro,temperature_gut_c,"MeteoSwiss GUT tre200d0, daily mean 2m air temperature Celsius; reference dates unchanged"
+CHhydro,rain_gut_mm,"MeteoSwiss GUT rre150d0, daily precipitation mm; reference dates unchanged"
+CHhydro,rain_previous7_gut_mm,Sum GUT rain_mm on dates date-7 through date-1; excludes current-day rain

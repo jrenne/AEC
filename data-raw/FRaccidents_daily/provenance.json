@@ -1,0 +1,15 @@
+{
+  "retrieved": "2026-10-22",
+  "selection": "Paris department 75; 2011-2019; 06 UTC to 06 UTC next day; pre-pandemic complete years",
+  "accident_repository": "https://github.com/jrenne/accidents-radars-france",
+  "repository_commit": "ed2c0c4b23fff700938d051acfb79a83a01fa11d",
+  "accident_input_sha256": "c9bc9d240b91906cc07d74322cf57b028248750dbdbec4e7fe16be05cf5936f6",
+  "weather_input_sha256": "be844873448511b407fcee2ca6e5eff98b57bb27344e22b437971a8c8ed4c8bb",
+  "weather_url": "https://meteofrance.s3.sbg.io.cloud.ovh.net/data/synchro_ftp/BASE/QUOT/Q_75_previous-1950-2024_RR-T-Vent.csv.gz",
+  "station": "75114001 PARIS-MONTSOURIS",
+  "accidents_retained": 57266,
+  "compact_sha256": {
+    "weather-daily.csv.gz": "25d116ab65171ad28cb1c85d6ecf8aa0e1649b9044ca09a3f8501a009c1a90e7",
+    "accidents-daily.csv.gz": "7aa3116d866bde8ba12d943f706cc95fbe0c4b53f30108612ccdff178cfe05c8"
+  }
+}

@@ -1,0 +1,31 @@
+CHhydro — source-specific rights reviewed 20 October 2026
+
+Electricity production and German wind: Energy-Charts.info, Fraunhofer ISE.
+https://api.energy-charts.info/
+The API documentation explicitly licenses data as CC BY 4.0 unless otherwise
+stated. No exception is stated in the saved public_power responses for this
+2016-2024 snapshot. Swiss production provenance: ENTSO-E / BFE, documented by
+https://energy-charts.info/charts/power/chart.htm?c=CH&l=en
+The snapshot precedes the documented January 2025 change to EEX-based series.
+
+Swiss price: Energy-Charts / Bundesnetzagentur | SMARD.de.
+Every downloaded CH price response explicitly contains license_info:
+CC BY 4.0 (creativecommons.org/licenses/by/4.0) from Bundesnetzagentur | SMARD.de
+https://www.smard.de/en/datennutzung explicitly permits redistribution and
+adaptation with source attribution. This is not an inference from the general
+terms of the ENTSO-E or Swissgrid websites, or a licence for all EEX products.
+
+Weather: Source: MeteoSwiss. CC BY 4.0.
+https://opendatadocs.meteoswiss.ch/general/terms-of-use
+Station SIO and GUT historical daily files (URLs/hashes in provenance.json).
+
+Licence link for all three sources: https://creativecommons.org/licenses/by/4.0/
+Retain Energy-Charts.info / Fraunhofer ISE, Bundesnetzagentur | SMARD.de, and
+Source: MeteoSwiss attribution, licence link and source URLs on redistribution.
+Indicate transformations: AEC selects variables/years; aligns UTC electricity
+hours; derives complete Europe/Zurich daily mean power and price; joins weather
+reference dates; sums German wind and previous-seven-day rain. No endorsement
+by any source institution is implied. Missing source observations are not filled.
+Original-response hashes, source-specific price licence strings and exact URLs
+are recorded in provenance.json. These data permissions do not clear other
+legacy AEC objects or establish a licence for AEC's software as a whole.

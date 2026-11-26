@@ -1,0 +1,9 @@
+Sources and rights checked 2026-10-22.
+
+Accidents: Jean-Paul Renne, https://github.com/jrenne/accidents-radars-france, harmonised BAAC data, commit ed2c0c4b23fff700938d051acfb79a83a01fa11d. Underlying source: Ministry of the Interior / ONISR, BAAC, https://www.data.gouv.fr/datasets/bases-de-donnees-annuelles-des-accidents-corporels-de-la-circulation-routiere-annees-de-2005-a-2024 . Source snapshot and SHA256 recorded in provenance.json.
+
+Weather: Meteo-France, Donnees climatologiques de base - quotidiennes, Paris-Montsouris station 75114001. https://www.data.gouv.fr/datasets/donnees-climatologiques-de-base-quotidiennes . Catalogue and selected resource update dates preserved in meteo-source.json; retrieved 2026-10-22. Resource SHA256 and URL in provenance.json.
+
+Both sources permit redistribution under Licence Ouverte / Open Licence 2.0. Full licence in LICENSE-DATA.md; official licence https://www.etalab.gouv.fr/licence-ouverte-open-licence/ . Retain source names, version/update dates and notices; do not imply endorsement.
+
+AEC transformations: select Paris 2011-2019, aggregate accident timestamps to 06-to-06 UTC days including zeros, select station RR and QRR, join by interval date, derive calendar labels. No raw accident-level locations, persons or vehicle records are included.

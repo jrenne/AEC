@@ -1,0 +1,118 @@
+{
+  "id": "6569b51ae64326786e4e8e1a",
+  "title": "Données climatologiques de base - quotidiennes",
+  "license": "lov2",
+  "page": "https://www.data.gouv.fr/datasets/donnees-climatologiques-de-base-quotidiennes",
+  "last_update": "2026-10-21T09:00:47+00:00",
+  "last_modified": "2026-10-22T09:07:36.397000+00:00",
+  "created_at": "2023-12-01T10:27:38.839000+00:00",
+  "resources": [
+    {
+      "checksum": null,
+      "created_at": "2025-01-03T09:44:52.792000+00:00",
+      "description": null,
+      "extras": {
+        "analysis:check_id": 51305919,
+        "analysis:checksum": "e8665f758077a5f8b304c7ca84cc3f5e0dff1b11",
+        "analysis:content-length": 3563,
+        "analysis:last-modified-at": "2026-07-21T07:02:43+00:00",
+        "analysis:last-modified-detection": "last-modified-header",
+        "analysis:mime-type": "text/plain",
+        "analysis:parsing:error": "csv_detective:Could not load file",
+        "analysis:parsing:finished_at": "2026-08-08T04:35:00.895375+00:00",
+        "analysis:parsing:started_at": "2026-08-08T04:35:00.864038+00:00",
+        "check:available": true,
+        "check:cors:allow-credentials": "true",
+        "check:cors:allow-headers": "authorization,content-type",
+        "check:cors:allow-methods": "GET",
+        "check:cors:allow-origin": "https://www.data.gouv.fr",
+        "check:cors:status": 204,
+        "check:date": "2026-08-08T04:34:57.536119+00:00",
+        "check:headers:content-length": 3563,
+        "check:headers:content-type": "binary/octet-stream",
+        "check:id": 51305919,
+        "check:status": 200,
+        "check:timeout": false
+      },
+      "filesize": 3563,
+      "filetype": "remote",
+      "format": "csv",
+      "geopf": null,
+      "harvest": null,
+      "id": "ec28c23c-534e-431b-aafc-fa9c19b1d439",
+      "internal": {
+        "created_at_internal": "2025-01-03T09:44:52.792000+00:00",
+        "last_modified_internal": "2026-03-24T08:28:35.947000+00:00"
+      },
+      "last_modified": "2026-07-21T07:02:43+00:00",
+      "latest": "https://www.data.gouv.fr/api/1/datasets/r/ec28c23c-534e-431b-aafc-fa9c19b1d439",
+      "metrics": {
+        "views": 21084
+      },
+      "mime": "text/csv",
+      "preview_url": null,
+      "schema": null,
+      "title": "Q_descriptif_champs_RR-T-Vent.csv",
+      "type": "documentation",
+      "url": "https://meteofrance.s3.sbg.io.cloud.ovh.net/data/synchro_ftp/BASE/QUOT/Q_descriptif_champs_RR-T-Vent.csv"
+    },
+    {
+      "checksum": null,
+      "created_at": "2023-12-12T14:13:17.333000+00:00",
+      "description": "Données quotidiennes RR-T-Vent pour le département 75, sur la période 1950-2024",
+      "extras": {
+        "analysis:check_id": 54345100,
+        "analysis:checksum": "4bd2dde3c72a3d1d6eb22c6f52fa5f933e459336",
+        "analysis:content-length": 59607523,
+        "analysis:last-modified-at": "2026-10-02T06:23:23+00:00",
+        "analysis:last-modified-detection": "last-modified-header",
+        "analysis:mime-type": "text/plain",
+        "analysis:parsing:error": "pmtiles_export:Task exceeded maximum timeout value (720 seconds)",
+        "analysis:parsing:finished_at": "2026-10-02T12:22:57.497454+00:00",
+        "analysis:parsing:geojson_size": 474421450,
+        "analysis:parsing:geojson_url": "https://hydra.s3.rbx.io.cloud.ovh.net/geojson/27bf7b0f-62a8-438f-acf4-b5f58d293322.geojson",
+        "analysis:parsing:parquet_size": 3408093,
+        "analysis:parsing:parquet_url": "https://hydra.s3.rbx.io.cloud.ovh.net/parquet/27bf7b0f-62a8-438f-acf4-b5f58d293322.parquet",
+        "analysis:parsing:parsing_table": "a4ba7b9354ea5ce0f1dd1b1c97a7fef6",
+        "analysis:parsing:started_at": "2026-10-02T07:07:50.053862+00:00",
+        "check:available": true,
+        "check:cors:allow-credentials": "true",
+        "check:cors:allow-headers": "authorization,content-type",
+        "check:cors:allow-methods": "GET",
+        "check:cors:allow-origin": "https://www.data.gouv.fr",
+        "check:cors:status": 204,
+        "check:date": "2026-07-08T09:47:33.888000",
+        "check:headers:content-length": 4023506,
+        "check:headers:content-type": "application/gzip",
+        "check:id": 49664181,
+        "check:status": 200,
+        "check:timeout": false
+      },
+      "filesize": 4023506,
+      "filetype": "remote",
+      "format": "csv.gz",
+      "geopf": null,
+      "harvest": null,
+      "id": "27bf7b0f-62a8-438f-acf4-b5f58d293322",
+      "internal": {
+        "created_at_internal": "2023-12-12T14:13:17.333000+00:00",
+        "last_modified_internal": "2026-10-02T06:47:35.420000+00:00"
+      },
+      "last_modified": "2026-10-02T06:23:23+00:00",
+      "latest": "https://www.data.gouv.fr/api/1/datasets/r/27bf7b0f-62a8-438f-acf4-b5f58d293322",
+      "metrics": {
+        "views": 2968
+      },
+      "mime": null,
+      "preview_url": "https://explore.data.gouv.fr/fr/resources/27bf7b0f-62a8-438f-acf4-b5f58d293322",
+      "schema": {
+        "name": null,
+        "url": null,
+        "version": null
+      },
+      "title": "QUOT_departement_75_periode_1950-2024_RR-T-Vent",
+      "type": "main",
+      "url": "https://meteofrance.s3.sbg.io.cloud.ovh.net/data/synchro_ftp/BASE/QUOT/Q_75_previous-1950-2024_RR-T-Vent.csv.gz"
+    }
+  ]
+}

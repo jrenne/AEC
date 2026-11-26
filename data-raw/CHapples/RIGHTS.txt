@@ -1,0 +1,26 @@
+Swiss apple wholesale extract and frost summaries (retrieved 20 October 2026)
+
+Market data: BLW, Fachbereich Marktanalysen; SWISSCOFEL.
+Source: accompanying workbook to the official 20 September 2024 article:
+https://www.donnees-agrimarche.ch/blog/nouvel-apercu-marche-suisse-pommes
+https://www.datocms-assets.com/21252/1726748286-begleittabelle_neue-einblicke-schweizer-apfelmarkt.xlsx
+The preserved original workbook, sheet deutsch, cell H5, expressly authorises
+processing and publication with source attribution. This source-specific
+permission is the basis for distributing this extract; it is not a CC licence
+and does not clear other SWISSCOFEL/SOV archives or the whole portal.
+Retain the above attribution when republishing market values or transformations.
+AEC selects only the numeric Gala and Golden Delicious class I monthly series,
+converts calendar labels, and joins separately licensed weather summaries.
+The workbook is retained verbatim as evidence and as the numerical source;
+embedded illustration rights are not asserted or extended by AEC.
+
+Weather: Source: MeteoSwiss. CC BY 4.0.
+https://opendatadocs.meteoswiss.ch/general/terms-of-use
+https://creativecommons.org/licenses/by/4.0/
+Station daily historical files, tre200dn (minimum 2m air temperature), SIO/GUT:
+https://data.geo.admin.ch/ch.meteoschweiz.ogd-smn/sio/ogd-smn_sio_d_historical.csv
+https://data.geo.admin.ch/ch.meteoschweiz.ogd-smn/gut/ogd-smn_gut_d_historical.csv
+AEC selects April--May 2006--2025 and derives counts, minima and cold-degree
+sums. These are AEC transformations, not official damage or orchard indices.
+Retain MeteoSwiss attribution, the CC BY 4.0 link, and indicate transformations.
+The market series does not acquire the weather's CC BY licence by being joined.
