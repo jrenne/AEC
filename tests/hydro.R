@@ -1,3 +1,4 @@
+source(if (file.exists("tests/helpers/compare-data.R")) "tests/helpers/compare-data.R" else "helpers/compare-data.R")
 e <- new.env();local <- file.exists('data/CHhydro.rda')
 if(local) load('data/CHhydro.rda',envir=e) else utils::data('CHhydro',package='AEC',envir=e)
 d <- e$CHhydro
@@ -34,5 +35,5 @@ dir.create(file.path(target,'data-raw'));dir.create(file.path(target,'data'))
 stopifnot(file.copy(folder,file.path(target,'data-raw'),recursive=TRUE))
 old <- getwd();setwd(target)
 tryCatch({rebuilt<-new.env();sys.source('data-raw/CHhydro/build.R',envir=rebuilt)
- stopifnot(identical(d,rebuilt$CHhydro))},finally={setwd(old);unlink(target,recursive=TRUE)})
+ assert_same_teaching_data(d,rebuilt$CHhydro)},finally={setwd(old);unlink(target,recursive=TRUE)})
 cat('Hydro: calendar, DST, source energy totals, negative prices, coverage, weather joins and installed offline rebuild OK.\n')

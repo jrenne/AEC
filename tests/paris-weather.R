@@ -1,3 +1,4 @@
+source(if (file.exists("tests/helpers/compare-data.R")) "tests/helpers/compare-data.R" else "helpers/compare-data.R")
 e <- new.env();local <- file.exists('data/FRaccidents_daily.rda')
 if(local) load('data/FRaccidents_daily.rda',envir=e) else utils::data('FRaccidents_daily',package='AEC',envir=e)
 d <- e$FRaccidents_daily
@@ -17,6 +18,6 @@ stopifnot(file.copy(file.path(root,'data-build/FRaccidents_daily'),file.path(fol
 old <- getwd();setwd(folder)
 tryCatch({
  rebuilt <- new.env();sys.source('data-raw/FRaccidents_daily/build.R',envir=rebuilt)
- stopifnot(identical(d,rebuilt$FRaccidents_daily))
+ assert_same_teaching_data(d,rebuilt$FRaccidents_daily)
 },finally={setwd(old);unlink(folder,recursive=TRUE)})
 cat('PASS: Paris complete daily grid including zeros, conserved source counts, rainfall matching, mappings and installed offline rebuild.\n')

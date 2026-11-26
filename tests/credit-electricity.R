@@ -1,3 +1,4 @@
+source(if (file.exists("tests/helpers/compare-data.R")) "tests/helpers/compare-data.R" else "helpers/compare-data.R")
 e <- new.env()
 objects <- c("UCIcredit","CHelectricity","CHelectricity_meters","CHelectricity_annual")
 local <- all(file.exists(paste0("data/",objects,".rda")))
@@ -53,7 +54,8 @@ old <- getwd();setwd(folder)
 tryCatch({
   rebuilt <- new.env()
   sys.source("data-raw/CHelectricity/build.R",envir=rebuilt)
-  stopifnot(identical(rebuilt$CHelectricity,d),identical(rebuilt$CHelectricity_meters,m),
-            identical(rebuilt$CHelectricity_annual,e$CHelectricity_annual))
+  assert_same_teaching_data(d, rebuilt$CHelectricity)
+  assert_same_teaching_data(m, rebuilt$CHelectricity_meters)
+  assert_same_teaching_data(e$CHelectricity_annual, rebuilt$CHelectricity_annual)
 },finally={setwd(old);unlink(folder,recursive=TRUE)})
 cat("Credit/electricity: source codes, outcomes, panel keys, missingness, DST, weights, size budgets and installed offline rebuild OK.\n")

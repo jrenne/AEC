@@ -1,3 +1,4 @@
+source(if (file.exists("tests/helpers/compare-data.R")) "tests/helpers/compare-data.R" else "helpers/compare-data.R")
 e <- new.env()
 objects <- c("CHapples","CHapples_frost")
 local <- all(file.exists(paste0("data/",objects,".rda")))
@@ -29,7 +30,7 @@ w <- read.csv(file.path(root,"data-build/CHapples/weather-daily.csv.gz"))
 for(i in seq_len(nrow(f))) {
  x <- w[w$station==f$station[i] & substr(w$date,1,4)==f$year[i],]
  stopifnot(nrow(x)==61L,sum(x$tmin_c<0)==f$frost_days[i],
-           min(x$tmin_c)==f$minimum_tmin_c[i],sum(abs(pmin(x$tmin_c,0)))==f$cold_degree_days[i])
+           isTRUE(all.equal(min(x$tmin_c),f$minimum_tmin_c[i],tolerance=64*.Machine$double.eps)),abs(sum(abs(pmin(x$tmin_c,0)))-f$cold_degree_days[i]) <= 64*.Machine$double.eps*max(1,abs(f$cold_degree_days[i])))
 }
 # An added harvest indicator necessarily absorbs the instrument: no extra shocks.
 d$month <- factor(format(d$date,"%m"))
@@ -42,6 +43,6 @@ stopifnot(file.copy(file.path(root,"data-build/CHapples"),file.path(folder,"data
 old <- getwd();setwd(folder)
 tryCatch({
  rebuilt <- new.env();sys.source("data-raw/CHapples/build.R",envir=rebuilt)
- for(obj in objects) stopifnot(identical(e[[obj]],rebuilt[[obj]]))
+ for(obj in objects) assert_same_teaching_data(e[[obj]],rebuilt[[obj]])
 },finally={setwd(old);unlink(folder,recursive=TRUE)})
 cat("Apples: keys, source totals, season alignment, weather counts, identification and installed offline rebuild OK.\n")

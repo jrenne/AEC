@@ -1,8 +1,11 @@
 # Run from the AEC root; all compact inputs are included for offline rebuilding.
 root <- 'data-raw/FRaccidents_daily'
-meta <- jsonlite::fromJSON(file.path(root,'provenance.json'))
-for(n in names(meta$compact_sha256)) stopifnot(identical(
- digest::digest(file.path(root,n),algo='sha256',file=TRUE),meta$compact_sha256[[n]]))
+meta <- read.dcf(file.path(root,'checksums.dcf'))
+for(n in c('accidents-daily.csv.gz','weather-daily.csv.gz')) {
+ field <- if(n=='accidents-daily.csv.gz') 'Accidents-SHA256' else 'Weather-SHA256'
+ actual <- strsplit(system2('shasum',c('-a','256',shQuote(file.path(root,n))),stdout=TRUE),' +')[[1]][1]
+ stopifnot(identical(actual,unname(meta[1,field])))
+}
 a <- read.csv(gzfile(file.path(root,'accidents-daily.csv.gz')))
 w <- read.csv(gzfile(file.path(root,'weather-daily.csv.gz')))
 stopifnot(!anyDuplicated(a$date),!anyDuplicated(w$date),identical(a$date,w$date))
@@ -16,7 +19,7 @@ FRaccidents_daily$year <- as.integer(format(FRaccidents_daily$date,'%Y'))
 stopifnot(nrow(FRaccidents_daily)==3287L,all(diff(FRaccidents_daily$date)==1),
  !anyNA(FRaccidents_daily),all(FRaccidents_daily$rain_mm>=0),
  all(FRaccidents_daily$injury_accidents>=0),
- sum(FRaccidents_daily$injury_accidents)==meta$accidents_retained)
+ sum(FRaccidents_daily$injury_accidents)==as.integer(meta[1,'Accidents-retained']))
 save(FRaccidents_daily,file='data/FRaccidents_daily.rda',compress='xz',version=2)
 print(c(days=nrow(FRaccidents_daily),accidents=sum(FRaccidents_daily$injury_accidents),
  size_bytes=file.info('data/FRaccidents_daily.rda')$size))
