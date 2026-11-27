@@ -1,3 +1,11 @@
+# AEC (development version)
+
+- Consistently format the standalone R construction scripts and validation code.
+- Use one explicit file allowlist to synchronize all nine installed construction
+  families from data-raw/, including FRradars.
+- Document source organization and contributor checks. Datasets and their
+  redistribution terms are unchanged.
+
 # AEC 0.2.0
 
 AEC now supplies only the fourteen documented teaching datasets used or

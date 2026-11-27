@@ -50,6 +50,8 @@ and institutions, without party recommendations or political outcome variables.
 Objects voted on the same date are not independent voting days. Cantonal
 coverage is shorter than national coverage; missing observations are not zeros.
 
+See [CONTRIBUTING.md](CONTRIBUTING.md) for the source map and maintenance checks.
+
 ### Rebuild the snapshots
 
 From the repository root, using the archived, checksum-verified CSV files:
